@@ -1,0 +1,8 @@
+This is my first package ever. Notes of my journey are here:
+
+- https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+- made a ~venv~ and installed build and twine into that. Using the nixpkgs
+  versions led to errors in the build, not sure why.
+
+- try to convert setup.py to setup.cfg.
