@@ -1,4 +1,3 @@
-import io
 import os
 import sys
 
@@ -13,10 +12,10 @@ for fn in sys.argv[2:]:
     cipher_fn = f"{fn}.secret"
     if cmd == "enc":
         print(f"encrypting {fn}...")
-        with io.open(fn, "rb") as inf, io.open(cipher_fn, "wb") as outf:
+        with open(fn, "rb") as inf, open(cipher_fn, "wb") as outf:
             outf.write(scrypt.encrypt(inf.read(), key, maxtime=1))
     elif cmd == "dec":
         print(f"decrypting {cipher_fn}...")
-        with io.open(cipher_fn, "rb") as inf, io.open(fn, "wb") as outf:
+        with open(cipher_fn, "rb") as inf, open(fn, "wb") as outf:
             tmp = scrypt.decrypt(inf.read(), key, encoding=None)
             outf.write(tmp)

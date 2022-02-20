@@ -9,10 +9,10 @@ Example of use:
     import os
     import secretenv
 
-    env : dict[str,str] = ChainMap(
+    env : dict = ChainMap(
         os.environ,
-        secretenv.open("local.env.secret"),
-        secretenv.open("main.env.secret"),
+        secretenv.load("local.env.secret"),
+        secretenv.load("main.env.secret"),
     )
     secretenv.wipe()
 
@@ -22,7 +22,6 @@ You can also use the module as a tool for encrypting and decrypting files:
     python -m secretenv dec myenv.txt   # decrypts from myenv.txt.secret
 """
 
-import io
 import os
 from typing import Callable
 
@@ -32,13 +31,13 @@ import scrypt
 def decrypt_file(filename: str, envkey_var: str = "ENVKEY") -> str:
     """Helper function. Decrypts the given file with the given key, and returns the
     string value."""
-    with io.open(filename, "rb") as f:
+    with open(filename, "rb") as f:
         data = f.read()
         key = os.environ[envkey_var].encode("ascii")
         return scrypt.decrypt(data, key)
 
 
-def simple_parse(input: str) -> dict[str, str]:
+def simple_parse(input: str) -> dict:
     """A basic environment parser: splits key from value at the first equals sign."""
     return dict(
         line.strip().split("=", 1)
@@ -47,11 +46,11 @@ def simple_parse(input: str) -> dict[str, str]:
     )
 
 
-def open(
+def load(
     filename: str,
     envkey_var: str = "ENVKEY",
-    parser: (Callable[[str], dict[str, str]]) = simple_parse,
-) -> dict[str, str]:
+    parser: (Callable[[str], dict]) = simple_parse,
+) -> dict:
     """Given the name of an encrypted environment file, decrypt it with a key stored
     in an environment variable (default "ENVKEY"), and parse it into a
     dictionary with the provided parser function (defaults to `simple_parse`).

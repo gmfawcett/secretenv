@@ -2,4 +2,4 @@
 
 with pkgs;
 
-mkShell { buildInputs = [ (python3.withPackages (ps: [ ps.py_scrypt ])) ]; }
+mkShell { buildInputs = [ (python38.withPackages (ps: [ ps.py_scrypt ])) ]; }

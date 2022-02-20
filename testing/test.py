@@ -7,8 +7,8 @@ import secretenv
 
 cm = ChainMap(
     os.environ,
-    secretenv.open("local.env.secret"),
-    secretenv.open("main.env.secret"),
+    secretenv.load("local.env.secret"),
+    secretenv.load("main.env.secret"),
 )
 secretenv.wipe()
 
