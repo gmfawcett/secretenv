@@ -2,6 +2,13 @@ This is my first package ever. Notes of my journey are here:
 
 - https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
+In particular,
+
+#+begin_src bash
+python3 -m build
+python -m twine upload dist/*
+#+end_src
+
 - made a ~venv~ and installed build and twine into that. Using the nixpkgs
   versions led to errors in the build, not sure why.
 
