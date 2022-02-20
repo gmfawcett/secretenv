@@ -5,7 +5,7 @@ This is my first package ever. Notes of my journey are here:
 In particular,
 
 #+begin_src bash
-python3 -m build
+python -m build
 python -m twine upload dist/*
 #+end_src
 
