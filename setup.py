@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="secretenv",
-    version="0.1.1",
+    version="0.1.2",
     description="playing with a secrets-in-repo idea",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -14,4 +14,5 @@ setup(
     author_email="graham.fawcett@gmail.com",
     license="MIT",
     packages=["secretenv"],
+    install_requires=["scrypt==0.8.18"],
 )

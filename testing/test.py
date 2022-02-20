@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-from collections import ChainMap
 import os
-import secretenv
+from collections import ChainMap
 
+import secretenv
 
 cm = ChainMap(
     os.environ,
